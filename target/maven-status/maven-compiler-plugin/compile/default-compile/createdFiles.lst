@@ -1,0 +1,6 @@
+com\example\demo\services\IHeladosServices.class
+com\example\demo\model\Helados.class
+com\example\demo\ProyectAppApiApplication.class
+com\example\demo\services\impl\HeladosServices.class
+com\example\demo\apis\HeladosController.class
+com\example\demo\repository\IHeladosRepository.class
