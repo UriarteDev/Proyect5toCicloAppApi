@@ -1,7 +1,11 @@
-FROM openjdk:17-jdk-alpine
+FROM ubuntu:latest AS build
+RUN apt-get update
+RUN apt-get install openjdk-21-jdk -y
+COPY ..
+RUN ./mvnw spring-boot:run
 
-WORKDIR /app
+FROM openjdk:21-jdk-slim
+EXPOSE 8080
+COPY --from=build /target/Protecto5toCicloAppApi-0.0.1-SNAPSHOT.jar app.jar
 
-COPY target/tu-aplicacion.jar /app/Protecto5toCicloAppApi-0.0.1-SNAPSHOT.jar
-
-CMD ["java", "-jar", "/app/Protecto5toCicloAppApi-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
